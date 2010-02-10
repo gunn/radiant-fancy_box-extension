@@ -12,7 +12,7 @@ module FancyBoxTags
   }
   tag 'assets:fancy_img' do |tag|
     options = tag.attr.dup
-    raise TagError, "'image_title' or 'image_title' attribute required" unless options['title'] or options['id'] or tag.locals.asset
+    raise TagError, "'image_id' or 'image_title' attribute required" unless options['image_id'] or options['image_title'] or tag.locals.asset
     
     image_options = {}
     tn_options = {}
