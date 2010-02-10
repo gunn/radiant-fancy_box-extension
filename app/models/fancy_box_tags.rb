@@ -11,10 +11,12 @@ module FancyBoxTags
     <pre><code><r:assets:fancy_img image_id="77" [tn_size="icon|thumbnail"]/></pre>
   }
   tag 'assets:fancy_img' do |tag|
+    options = tag.attr.dup
+    raise TagError, "'image_title' or 'image_title' attribute required" unless options['title'] or options['id'] or tag.locals.asset
+    
     image_options = {}
     tn_options = {}
     
-    options = tag.attr.dup
     options.each do |k,v|
       if m = /\Aimage_(.*)/.match(k)
         image_key = m.captures.first
@@ -34,6 +36,7 @@ module FancyBoxTags
     tn_img = tag.render('assets:image', tn_options)
     
     options["class"] ||= "fancy-img"
+    options["title"] ||= tag.double? ? tag.expand : find_asset(tag, image_options).caption
     
     attributes = options.inject('') { |s, (k, v)| s << %{#{k.downcase}="#{v}" } }.strip
     
