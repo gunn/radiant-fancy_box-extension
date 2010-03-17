@@ -4,11 +4,10 @@ module FancyBoxTags
   class TagError < StandardError; end
   
   desc %{
-    Renders the url for the asset. If the asset is an image, the <code>size</code> attribute can be used to 
-    generate the url for that size. 
+    Inserts a fancy-box zoomable image. Just use 'fancy_img' anywhere you would use 'image' with paperclipped.
     
     *Usage:* 
-    <pre><code><r:assets:fancy_img image_id="77" [tn_size="icon|thumbnail"]/></pre>
+    <pre><code><r:assets:fancy_img image_id="77" [tn_size="icon|thumbnail|custom"]/></pre>
   }
   tag 'assets:fancy_img' do |tag|
     options = tag.attr.dup

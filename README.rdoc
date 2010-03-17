@@ -25,17 +25,28 @@ Wherever you want an image:
 
 You must specify at least image_id or image_title.
 
-== Advanced Usage
+== Advanced usage
 
 tn_id and tn_title - default to image_id and image_title respectively.
 tn_size defaults to "thumbnail"
 
-tn_geometry - If your version of paperclip supports it, you specify a custom size for the thumnail
-  <r:fancy_img image_title="funky_bacon" tn_size="custom" tn_geometry="260x260>" />
+tn_geometry - If your version of paperclipped supports it, you specify a custom size for the thumnail
+  <r:assets:fancy_img image_title="funky_bacon" tn_size="custom" tn_geometry="260x260>" />
 
 Any attributes prepended with 'image_' will be passed through to the 'assets:url' tag, to find the large image to link to.
-Any attributes prepended with 'tn_' will be passed through to the 'assets:url' tag, to display the thumnail
+Any attributes prepended with 'tn_' will be passed through to the 'assets:url' tag, to display the thumnail.
 All other attributes are used as html attributes for the link.
+
+== Neat tricks
+
+Because of the close integration with paperclipped you can use the fancy_img tag anywhere you can use the image tag.
+Show the page's first attached asset:
+  <r:assets:first:fancy_img size="thumnail"/>
+
+Create a gallery with previous and next buttons containing each of the current page's attached assets:
+  <r:assets:each>
+    <r:assets:fancy_img rel='gallery' tn_size="thumnail"/>
+  </r:assets:each>
 
 
 
