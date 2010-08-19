@@ -26,6 +26,11 @@ namespace :radiant do
         
       end
       
+      def confirm(question)
+        require 'highline/import' unless respond_to?(:agree)
+        ENV['FORCE'] || agree("#{question} [yn]")
+      end
+      
     end
   end
 end
